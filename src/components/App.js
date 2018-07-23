@@ -1,10 +1,13 @@
 import React from 'react';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 
-import Header from './Header.js';
-// import Home from './Home.js';
+import Home from './Home.js';
+import LoginPage from './LoginPage.js';
+import About from './About.js';
+import SignupPage from './SignupPage.js';
+import CreatePoem from './CreatePoem.js';
+
 import './app.css';
-import {API_BASE_URL} from '../config.js';
 
 export default class App extends React.Component{
 	constructor(props){
@@ -18,52 +21,35 @@ export default class App extends React.Component{
 			error: null,
 			loading: true
 		}
-		this.userLog = this.userLog.bind(this);
 	}
 
 	componentDidMount(){
-		this.userLog();
-	}
 
-	userLog(){
-		fetch(`${API_BASE_URL}/user/log`, {
-			method: 'GET',
-			mode: 'cors',
-			headers: {
-				'Content-Type': 'application/json; charset=utf-8',
-				'Authorization': `Bearer ${localStorage.getItem('p8s4a9Token')}`
-			}
-		})
-			.then(res => {
-				if(!res.ok){
-					return Promise.reject(res.statusText);
-				}
-				return res.json();
-			})
-			.then(data => {
-				this.setState({
-					user_data: data,
-					loading: false
-				})
-			})
-			.catch(err => {
-				this.setState({
-					error: 'user could not be found',
-					loading: false
-				})
-			})
 	}
 
 	render(){
 		return (
-			<div>
-				<div id="header-container">
-					<Header pages={this.state.header.pages} title={this.state.header.title} />
+			<Router>
+				<div className="app">
+					<header>
+						<h1>Poem Share</h1>
+						<ul>
+							<li><Link to="/about/">About</Link></li>
+							<li><Link to="/">Login</Link></li>
+							<li><Link to="/signup/">Signup</Link></li>
+							<li><Link to="/home/">Home</Link></li>
+							<li><Link to="/create/">Create Poem</Link></li>
+						</ul>
+					</header>
+					<main>
+						<Route exact path="/" component={LoginPage} />
+						<Route exact path="/signup/" component={SignupPage} />
+						<Route exact path="/about/" component={About} />
+						<Route exact path="/home/" component={Home} />
+						<Route exact path="/create/" component={CreatePoem} />
+					</main>
 				</div>
-				<div id="page-container">
-					
-				</div>
-			</div>
+			</Router>
 		);
 	}
 }
