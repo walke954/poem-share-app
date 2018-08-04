@@ -10,7 +10,7 @@ export class LoginForm extends React.Component{
 		return this.props
 			.dispatch(login(username, password))
 			.then(() => {
-				this.props.redirectToHome();
+				this.props.history.push('/home/');
 			});
 	}
 

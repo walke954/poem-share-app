@@ -1,5 +1,5 @@
 import React from 'react';
-import CreatePoemForm from './CreatePoemForm.js';
+import CreatePoemForm from './forms/CreatePoemForm.js';
 import {Redirect} from 'react-router-dom';
 
 export default class CreatePoem extends React.Component{

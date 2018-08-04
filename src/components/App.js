@@ -6,6 +6,7 @@ import LoginPage from './LoginPage.js';
 import About from './About.js';
 import SignupPage from './SignupPage.js';
 import CreatePoem from './CreatePoem.js';
+import PoemDisplayPage from './poemDisplayPage/PoemDisplayPage.js';
 
 import './app.css';
 
@@ -21,10 +22,6 @@ export default class App extends React.Component{
 			error: null,
 			loading: true
 		}
-	}
-
-	componentDidMount(){
-
 	}
 
 	render(){
@@ -47,6 +44,7 @@ export default class App extends React.Component{
 						<Route exact path="/about/" component={About} />
 						<Route exact path="/home/" component={Home} />
 						<Route exact path="/create/" component={CreatePoem} />
+						<Route exact path="/poem/:poemId" component={PoemDisplayPage} />
 					</main>
 				</div>
 			</Router>

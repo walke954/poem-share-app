@@ -4,10 +4,12 @@ import thunk from 'redux-thunk';
 import {loadAuthToken} from './local-storage';
 import authReducer from './reducers/auth';
 import userDataReducer from './reducers/user-data';
+import poemReducer from './reducers/poem';
 import {setAuthToken, refreshAuthToken} from './actions/auth';
 
 const store = createStore(
     combineReducers({
+    	poem: poemReducer,
         form: formReducer,
         auth: authReducer,
         userData: userDataReducer
