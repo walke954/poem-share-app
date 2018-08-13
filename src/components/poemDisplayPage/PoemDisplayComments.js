@@ -48,7 +48,7 @@ export class PoemDisplayComments extends React.Component{
 						/>
 					);
 				}
-				else{
+				else if(this.props.auth.currentUser !== null){
 					replies.push(
 						<p onClick={() => this.setState({commentId: comment.id})}
 						key={comment.id}>Reply</p>)
@@ -71,7 +71,7 @@ export class PoemDisplayComments extends React.Component{
 					update={this.update} 
 				/>);
 			}
-			else{
+			else if(this.props.auth.currentUser !== null){
 				comments.push(
 					<p onClick={() => this.setState({willComment: true})}
 						key={this.props.poem.id}>Comment</p>
@@ -98,7 +98,8 @@ export class PoemDisplayComments extends React.Component{
 }
 
 const mapStateToProps = state => ({
-	poem: state.poem
+	poem: state.poem,
+	auth: state.auth
 });
 
 export default connect(mapStateToProps)(PoemDisplayComments);

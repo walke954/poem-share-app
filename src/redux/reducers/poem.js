@@ -8,7 +8,8 @@ const initialState = {
 	content: null,
 	date: null,
 	likes: null,
-	comments: null
+	comments: null,
+	replies: null
 };
 
 
@@ -26,7 +27,6 @@ export default function reducer(state = initialState, action){
 			replies: action.replies
 		});
 	}
-
 	else if(action.type === actions.ADD_COMMENT){
 		return {
 			...state,
@@ -59,6 +59,44 @@ export default function reducer(state = initialState, action){
 			]
 		}
 	}
-
+	else if(action.type === actions.EDIT){
+		return {
+			id: state.id,
+			title: action.title,
+			username: state.username,
+			displayName: state.displayName,
+			content: action.content,
+			date: state.date,
+			likes: state.likes,
+			comments: state.comments,
+			replies: state.replies
+		}
+	}
+	else if(action.type === actions.REMOVE){
+		return {
+			id: null,
+			title: null,
+			username: null,
+			displayName: null,
+			content: null,
+			date: null,
+			likes: null,
+			comments: null,
+			replies: null
+		}
+	}
+	else if(action.type === actions.TOGGLE_LIKE){
+		return {
+			id: state.id,
+			title: state.title,
+			username: state.username,
+			displayName: state.displayName,
+			content: state.content,
+			date: state.date,
+			likes: state.likes + action.increment,
+			comments: state.comments,
+			replies: state.replies
+		}
+	}
 	return state;
 };

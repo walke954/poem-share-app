@@ -3,8 +3,8 @@ import {reducer as formReducer} from 'redux-form';
 import thunk from 'redux-thunk';
 import {loadAuthToken} from './local-storage';
 import authReducer from './reducers/auth';
-import userDataReducer from './reducers/user-data';
 import poemReducer from './reducers/poem';
+import userReducer from './reducers/user';
 import {setAuthToken, refreshAuthToken} from './actions/auth';
 
 const store = createStore(
@@ -12,7 +12,7 @@ const store = createStore(
     	poem: poemReducer,
         form: formReducer,
         auth: authReducer,
-        userData: userDataReducer
+        user: userReducer
     }),
     applyMiddleware(thunk)
 );

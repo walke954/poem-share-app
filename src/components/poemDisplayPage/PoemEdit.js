@@ -1,23 +1,27 @@
 import React from 'react';
 import {Field, reduxForm} from 'redux-form';
-import {createPoem} from '../../redux/actions/poem';
+import {editPoem} from '../../redux/actions/poem';
 import Input from '../inputs/Input';
 import TextArea from '../inputs/TextArea';
 import {required, nonEmpty, isTrimmed} from '../../validators';
+import {connect} from 'react-redux';
 
-export class CreatePoemForm extends React.Component{
+export class PoemEdit extends React.Component{
 	onSubmit(values){
 		const {title, content} = values;
 		return this.props
-			.dispatch(createPoem(title, content))
+			.dispatch(editPoem(title, content, this.props.id))
 			.then(() => {
-				this.props.history.push('/');
+				this.props.toggleEdit();
 			});
 	}
 
 	render(){
 		return (
-			<form autoComplete="off" onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}>
+			<form 
+				autoComplete="off" 
+				onSubmit={this.props.handleSubmit(values => this.onSubmit(values))} 
+			>
 				<label htmlFor="title">Title</label>
 				<Field 
 					name="title" 
@@ -25,7 +29,6 @@ export class CreatePoemForm extends React.Component{
 					type="text" 
 					component={Input} 
 					validate={[required, nonEmpty, isTrimmed]} 
-					value=""
 				/>
 				<label htmlFor="content">Content</label>
 				<Field 
@@ -34,12 +37,19 @@ export class CreatePoemForm extends React.Component{
 					type="text" 
 					component={TextArea} 
 					validate={[required, nonEmpty]}
-					value=""
 				/>
-				<button type="submit" disabled={this.props.pristine || this.props.submitting}>Create</button>
+				<button type="submit" disabled={this.props.submitting}>Update</button>
+				<button type="button" onClick={() => this.props.toggleEdit()}>Cancel</button>
 			</form>
 		);
 	}
 }
 
-export default reduxForm({form: 'create'})(CreatePoemForm);
+const initializeForm = state => ({
+	initialValues: {
+		title: state.poem.title,
+		content: state.poem.content
+	}
+});
+
+export default connect(initializeForm)(reduxForm({form: 'create'})(PoemEdit));

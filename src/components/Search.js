@@ -2,72 +2,44 @@ import React from 'react';
 import PoemBlock from './inputs/PoemBlock.js';
 import {connect} from 'react-redux';
 import {API_BASE_URL} from '../config';
+import RequireLogin from './RequireLogin.js';
+import SearchForm from './forms/SearchForm.js';
 
-export class PoemList extends React.Component {
+export class Search extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
 			page: 0,
 			poem_items: [],
-			end: false,
-			query: null
+			keyword: '',
+			end: false
 		}
 		this.getPoemList = this.getPoemList.bind(this);
 		this.selectPoem = this.selectPoem.bind(this);
 	}
 
-	componentDidMount(){
-		if(this.props.likes && this.props.username){
-			const query = {
-				username: this.props.username,
-				likes: true,
-				page: this.state.page
-			}
-			this.getPoemList(query);
-		}
-		else if(this.props.username){
-			const query = {
-				username: this.props.username,
-				page: this.state.page
-			}
-			this.getPoemList(query);
-		}
-		else{
-			console.error('PoemList contains incorrect properties and cannot be loaded.')
-		}
-	}
+	getPoemList(keyword){
+		this.setState({keyword: keyword});
 
-	getPoemList(query){
-		let queryString = '';
-		if(query.username){
-			queryString = queryString.concat(`username=${query.username}&`);
-		}
-		if(query.likes){
-			queryString = queryString.concat(`likes=${query.likes}&`);
-		}
-		queryString = queryString.concat(`page=${query.page}`);
+	    const queryString = `search=${keyword}&page=${this.state.page}`
 
-		return fetch(`${API_BASE_URL}/poem/list/?${queryString}`, {
+	    return fetch(`${API_BASE_URL}/poem/list/?${queryString}`, {
 	        method: 'GET',
 	        mode: 'cors',
 	        headers: {
 	           'Content-Type': 'application/json'
 	        }
 	    })
-		    .then( res => {
+	        .then( res => {
 		    	if (!res.ok) {
                     return Promise.reject(res.statusText);
                 }
                 return res.json();
             })
 		    .then(list => {
-		    	this.setState({poem_items: this.state.poem_items.concat(list.poems)})
-
-		    	const query = {
-					username: this.props.username,
-					page: this.state.page + 1
-				}
-				this.setState({query: query});
+		    	let copy = this.state.poem_items.slice();
+		    	this.setState({poem_items: copy.concat(list.poems)});
+		    	this.setState({page: this.state.page + 1});
 
 		    	if(list.poems.length !== 10){
 		    		this.setState({end: true});
@@ -96,11 +68,12 @@ export class PoemList extends React.Component {
 
 		let button = null;
 		if(this.state.end === false && this.state.poem_items.length !== 0){
-			button = <button onClick={() => this.getPoemList(this.state.query)}>More</button>;
+			button = <button onClick={() => this.getPoemList(this.state.keyword)}>More</button>;
 		}
 
 		return (
 			<div className="Search">
+				<SearchForm getPoemList={this.getPoemList} />
 				{poem_blocks}
 				{message}
 				{button}
@@ -110,7 +83,7 @@ export class PoemList extends React.Component {
 }
 
 const mapStateToProps = state => ({
-	poem: state.poem
+	
 });
 
-export default connect(mapStateToProps)(PoemList);
+export default RequireLogin()(connect(mapStateToProps)(Search));

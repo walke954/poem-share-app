@@ -1,7 +1,6 @@
 import React from 'react';
 import {Field, reduxForm} from 'redux-form';
 import TextArea from '../inputs/TextArea';
-import {nonEmpty, required} from '../../validators';
 import {createComment} from '../../redux/actions/poem';
 
 export class CommentCreate extends React.Component{
@@ -21,7 +20,6 @@ export class CommentCreate extends React.Component{
 					id="content" 
 					type="text" 
 					component={TextArea} 
-					validate={[required, nonEmpty]}
 				/>
 				<button type="submit" disabled={this.props.pristine || this.props.submitting}>Create</button>
 			</form>
