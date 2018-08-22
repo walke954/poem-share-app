@@ -36,7 +36,10 @@ export class CreatePoemForm extends React.Component{
 					validate={[required, nonEmpty]}
 					value=""
 				/>
-				<button type="submit" disabled={this.props.pristine || this.props.submitting}>Create</button>
+				<button 
+					className="submit-button"
+					type="submit" disabled={this.props.pristine || this.props.submitting}
+				>Create</button>
 			</form>
 		);
 	}

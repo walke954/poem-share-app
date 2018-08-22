@@ -7,6 +7,8 @@ import {getLikes} from '../../redux/actions/user.js';
 import {getSelectPoem, deletePoem, likePoem} from '../../redux/actions/poem.js';
 import RequireLogin from '../RequireLogin.js';
 
+import './poemDisplayPage.css';
+
 export class PoemDisplayPage extends React.Component{
 	constructor(props){
 		super(props);
@@ -74,7 +76,7 @@ export class PoemDisplayPage extends React.Component{
 		}
 
 		if(this.state.error){
-			return <div>Poem does not exist!!!</div>;
+			return <div>Poem could not be loaded or does not exist.</div>;
 		}
 
 		if(this.state.loading){
@@ -90,7 +92,7 @@ export class PoemDisplayPage extends React.Component{
 		}
 
 		return (
-			<div>
+			<div className="poemDisplayPage">
 				<PoemDisplay 
 					toggleEdit={this.toggleEdit} 
 					deleteSelectedPoem={this.deleteSelectedPoem}

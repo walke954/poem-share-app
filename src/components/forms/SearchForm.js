@@ -9,23 +9,41 @@ export default class NameForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(event) {
+   handleChange(event) {
     this.setState({value: event.target.value});
+
+    // The setState() function passed by resetPage() is asynchronous, therefore the page needs to be reset using a promise before new values are submitted
+    new Promise((resolve, reject) => {
+      resolve(this.props.resetPage());
+    })
+      .then(() => {
+        this.props.getPoemList(this.state.value);
+      })
+      .catch(err => {
+        console.error(err);
+      });
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.getPoemList(this.state.value);
+
+    // The setState() function passed by resetPage() is asynchronous, therefore the page needs to be reset using a promise before new values are submitted
+    new Promise((resolve, reject) => {
+      resolve(this.props.resetPage());
+    })
+      .then(() => {
+        this.props.getPoemList(this.state.value);
+      })
+      .catch(err => {
+        console.error(err);
+      });
   }
 
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <label>
-          Name:
-          <input type="text" value={this.state.value} onChange={this.handleChange} />
-        </label>
-        <input type="submit" value="Submit" />
+        <label>Search</label>
+        <input className="search-input" type="text" value={this.state.value} onChange={this.handleChange} />
       </form>
     );
   }

@@ -1,6 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
+import './poemDisplay.css';
+
 export function PoemDisplay(props){
 	let like = props.user.likes.findIndex(like => like === props.poem.id) === -1 ? 'like' : 'unlike';
 	
@@ -32,12 +34,14 @@ export function PoemDisplay(props){
 	});
 
 	return (
-		<div>
+		<div className="poemDisplay">
 			<h2>{props.poem.title}</h2>
-			{toolBar}
-			<p>{props.poem.displayName} <span className="gray-text">@{props.poem.username}</span></p>
-			<p>Likes: {props.poem.likes}</p>
 			<div>{content}</div>
+			<div className="toolBar-wrapper">
+				{toolBar}
+				<p>{props.poem.displayName} <span className="gray-text">@{props.poem.username}</span></p>
+				<p>Likes: {props.poem.likes}</p>
+			</div>
 		</div>
 	);
 }

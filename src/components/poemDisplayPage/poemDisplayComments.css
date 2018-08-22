@@ -1,0 +1,39 @@
+.poemDisplayComments{
+	text-align: left;
+	max-width: 800px;
+	width: 75%;
+}
+
+.comment{
+	margin-bottom: 10px;
+	border-left: 3px solid dodgerblue;
+	padding: 5px;
+}
+
+.reply{
+	margin: 10px;
+	border-left: 3px solid dodgerblue;
+	padding: 5px;
+}
+
+.reply p{
+	padding: 5px 0px;
+}
+
+.comment p{
+	padding: 5px 0px;
+}
+
+.clickable{
+	color: dodgerblue;
+}
+
+.clickable:hover{
+	cursor: pointer;
+	color: darkblue;
+}
+
+.display-comments:hover{
+	color: darkblue;
+	cursor: pointer;
+}

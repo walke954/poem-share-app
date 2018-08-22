@@ -1,0 +1,11 @@
+textarea{
+	width: 100%;
+	max-width: 100%;
+	height: 200px;
+	border: 2px solid lightblue;
+	margin: none;
+}
+
+textarea:focus{
+	border: 2px solid dodgerblue;
+}

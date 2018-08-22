@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 import CommentCreate from './CommentCreate.js';
 import CreateReply from './CreateReply.js';
 
+import './poemDisplayComments.css';
+
 export class PoemDisplayComments extends React.Component{
 	constructor(props){
 		super(props);
@@ -29,9 +31,9 @@ export class PoemDisplayComments extends React.Component{
 					.sort((a,b) => a.index - b.index)
 					.map((reply, index) => {
 						return (
-							<div key={reply.id}>
-								<p>{reply.displayName} <span className="gray-text">@{reply.username}</span></p>
+							<div className="reply" key={reply.id}>
 								<p>{reply.content}</p>
+								<p>{reply.displayName} <span className="gray-text">@{reply.username}</span></p>
 								<p>{reply.date}</p>
 							</div>
 						);
@@ -50,14 +52,14 @@ export class PoemDisplayComments extends React.Component{
 				}
 				else if(this.props.auth.currentUser !== null){
 					replies.push(
-						<p onClick={() => this.setState({commentId: comment.id})}
+						<p className="clickable" onClick={() => this.setState({commentId: comment.id})}
 						key={comment.id}>Reply</p>)
 				}
 
 				return (
-					<div key={index}>
-						<p>{comment.displayName} <span className="gray-text">@{comment.username}</span></p>
+					<div className="comment" key={index}>
 						<p>{comment.content}</p>
+						<p>{comment.displayName} <span className="gray-text">@{comment.username}</span></p>
 						<p>{comment.date}</p>
 						{replies}
 					</div>
@@ -73,7 +75,7 @@ export class PoemDisplayComments extends React.Component{
 			}
 			else if(this.props.auth.currentUser !== null){
 				comments.push(
-					<p onClick={() => this.setState({willComment: true})}
+					<p className="clickable" onClick={() => this.setState({willComment: true})}
 						key={this.props.poem.id}>Comment</p>
 				);
 			}
@@ -89,8 +91,8 @@ export class PoemDisplayComments extends React.Component{
 		}
 
 		return (
-			<div>
-				<h3 onClick={() => this.setState({comments_display: !this.state.comments_display})}>Comments{amount}</h3>
+			<div className="poemDisplayComments">
+				<h3 className="display-comments" onClick={() => this.setState({comments_display: !this.state.comments_display})}>Comments{amount}</h3>
 				{comments}
 			</div>
 		);

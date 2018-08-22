@@ -1,4 +1,5 @@
 import React from 'react';
+import './input.css';
 
 export default class Input extends React.Component {
 	componentDidUpdate(prevProps){
@@ -19,11 +20,12 @@ export default class Input extends React.Component {
 		}
 
 		return (
-			<div>
-				<label htmlFor={this.props.input.name}>
+			<div className="input-element">
+				<label htmlFor={this.props.input.name} className="label-input">
 					{this.props.label}
 				</label>
 				<input
+					className="input-textbox"
 					{...this.props.input}
 					id={this.props.input.name}
 					type={this.props.type}

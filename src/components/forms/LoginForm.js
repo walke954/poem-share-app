@@ -16,7 +16,8 @@ export class LoginForm extends React.Component{
 
 	render(){
 		return (
-			<form autoComplete="off" onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}>
+			<form className="loginForm" autoComplete="off" onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}>
+				<h2 className="form-title">Login</h2>
 				<label htmlFor="username">Username</label>
 				<Field 
 					name="username" 
@@ -35,7 +36,11 @@ export class LoginForm extends React.Component{
 					validate={[required, nonEmpty]}
 					value=""
 				/>
-				<button type="submit" disabled={this.props.pristine || this.props.submitting}>Login</button>
+				<button 
+					className="submit-button"
+					type="submit" 
+					disabled={this.props.pristine || this.props.submitting}
+				>Login</button>
 			</form>
 		);
 	}

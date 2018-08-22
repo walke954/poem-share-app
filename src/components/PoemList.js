@@ -3,6 +3,8 @@ import PoemBlock from './inputs/PoemBlock.js';
 import {connect} from 'react-redux';
 import {API_BASE_URL} from '../config';
 
+import './poemList.css';
+
 export class PoemList extends React.Component {
 	constructor(props){
 		super(props);
@@ -32,11 +34,9 @@ export class PoemList extends React.Component {
 			}
 			this.getPoemList(query);
 		}
-		else{
-			console.error('PoemList contains incorrect properties and cannot be loaded.')
-		}
 	}
 
+	// calls to the API to get a list of poems for the component.
 	getPoemList(query){
 		let queryString = '';
 		if(query.username){
@@ -63,6 +63,7 @@ export class PoemList extends React.Component {
 		    .then(list => {
 		    	this.setState({poem_items: this.state.poem_items.concat(list.poems)})
 
+		    	// records the last query and adds a page as well. Next time 'getPoemList()' is called, this will be used, adding another page to the list.
 		    	const query = {
 					username: this.props.username,
 					page: this.state.page + 1
@@ -84,14 +85,15 @@ export class PoemList extends React.Component {
 
 	render(){
 		const poem_blocks = this.state.poem_items.map((item, index) => 
-			<div key={index} onClick={() => this.selectPoem(item.id)}>
+			<div className="poemBlockWrapper" key={index} onClick={() => this.selectPoem(item.id)}>
 				<PoemBlock item={item} />
 			</div>
 		);
 
+		// to be displayed if the list is empty
 		let message = null;
 		if(this.state.poem_items.length === 0){
-			message = <p>No items listed</p>;
+			message = <p className="noItemMessage">No items listed</p>;
 		}
 
 		let button = null;
@@ -100,7 +102,7 @@ export class PoemList extends React.Component {
 		}
 
 		return (
-			<div className="Search">
+			<div className="poemList">
 				{poem_blocks}
 				{message}
 				{button}
@@ -110,7 +112,7 @@ export class PoemList extends React.Component {
 }
 
 const mapStateToProps = state => ({
-	poem: state.poem
+	
 });
 
 export default connect(mapStateToProps)(PoemList);

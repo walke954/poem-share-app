@@ -1,0 +1,49 @@
+.home{
+	background-color: white;
+	min-width: 290px;
+	max-width: 700px;
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+	border-radius: 10px;
+	text-align: left;
+	padding: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.create-poem-button{
+	padding: 10px;
+	border: 1px solid dodgerblue;
+	background-color: lightblue;
+	color: darkblue;
+	font-weight: bold;
+	border-radius: 2px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
+	max-width: 200px;
+}
+
+.create-poem-button:hover{
+	background-color: dodgerblue;
+	color: white;
+	cursor: pointer;
+}
+
+.createPoemBlock{
+	padding: 10px;
+}
+
+.poemList-wrapper{
+	display: inline-block;
+	vertical-align: top;
+	width: 100%;
+}
+
+@media only screen and (min-width: 600px){
+	.poemList-wrapper{
+		width: 50%;
+	}
+}

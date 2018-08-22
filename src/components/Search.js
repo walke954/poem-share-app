@@ -5,6 +5,8 @@ import {API_BASE_URL} from '../config';
 import RequireLogin from './RequireLogin.js';
 import SearchForm from './forms/SearchForm.js';
 
+import './search.css';
+
 export class Search extends React.Component {
 	constructor(props){
 		super(props);
@@ -16,6 +18,16 @@ export class Search extends React.Component {
 		}
 		this.getPoemList = this.getPoemList.bind(this);
 		this.selectPoem = this.selectPoem.bind(this);
+		this.resetPage = this.resetPage.bind(this);
+	}
+
+	resetPage(){
+		this.setState({
+			page: 0,
+			poem_items: [],
+			keyword: '',
+			end: false
+		});
 	}
 
 	getPoemList(keyword){
@@ -56,7 +68,7 @@ export class Search extends React.Component {
 
 	render(){
 		const poem_blocks = this.state.poem_items.map((item, index) => 
-			<div key={index} onClick={() => this.selectPoem(item.id)}>
+			<div className="poemBlockWrapper" key={index} onClick={() => this.selectPoem(item.id)}>
 				<PoemBlock item={item} />
 			</div>
 		);
@@ -72,8 +84,8 @@ export class Search extends React.Component {
 		}
 
 		return (
-			<div className="Search">
-				<SearchForm getPoemList={this.getPoemList} />
+			<div className="search">
+				<SearchForm getPoemList={this.getPoemList} resetPage={this.resetPage} />
 				{poem_blocks}
 				{message}
 				{button}

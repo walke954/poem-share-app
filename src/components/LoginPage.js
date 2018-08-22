@@ -3,15 +3,17 @@ import LoginForm from './forms/LoginForm.js';
 import {Redirect, Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
+import './loginPage.css';
+
 export function LoginPage(props){
 	if(props.loggedIn){
 		return <Redirect to="/home/" />;
 	}
 
 	return (
-		<div>
+		<div className="loginPage">
 			<LoginForm history={props.history} />
-			<p><Link to="/signup/">Signup</Link></p>
+			<p id="to-signup">Not a user? <Link to="/signup/">Register</Link> now!</p>
 		</div>
 	);
 }

@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './textArea.css';
+
 export default class TextArea extends React.Component {
 	componentDidUpdate(prevProps){
 		if(!prevProps.meta.active && this.props.meta.active){
@@ -19,7 +21,7 @@ export default class TextArea extends React.Component {
 		}
 
 		return (
-			<div>
+			<div className="textArea">
 				<label htmlFor={this.props.input.name}>
 					{this.props.label}
 				</label>
