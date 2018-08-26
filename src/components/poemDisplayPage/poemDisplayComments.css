@@ -1,18 +1,20 @@
 .poemDisplayComments{
+	margin-left: auto;
+	margin-right: auto;
 	text-align: left;
 	max-width: 800px;
-	width: 75%;
+	width: 95%;
 }
 
 .comment{
-	margin-bottom: 10px;
-	border-left: 3px solid dodgerblue;
+	margin-bottom: 20px;
+	border-left: 2px solid dodgerblue;
 	padding: 5px;
 }
 
 .reply{
-	margin: 10px;
-	border-left: 3px solid dodgerblue;
+	margin: 20px;
+	border-left: 2px solid dodgerblue;
 	padding: 5px;
 }
 
@@ -36,4 +38,9 @@
 .display-comments:hover{
 	color: darkblue;
 	cursor: pointer;
+}
+
+.poemDisplayComments p{
+	margin-left: 10px;
+	display: block;
 }

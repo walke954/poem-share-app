@@ -23,7 +23,7 @@ export class Home extends React.Component{
 	render(){
 		let createPoemBlock = <div className="createPoemBlock"></div>;
 		let createPoemBlockButton = 
-			<button className="create-poem-button" onClick={() => this.toggleCreatePoem()}>
+			<button className="create-poem-button common-button" onClick={() => this.toggleCreatePoem()}>
 				Create A Poem
 			</button>;
 
@@ -46,8 +46,8 @@ export class Home extends React.Component{
 					<PoemList username={this.props.user.username} history={this.props.history} />
 				</div>
 				<div className="poemList-wrapper">
-					<h3>Liked Poems</h3>
-					<PoemList username={this.props.user.username} likes="true" history={this.props.history} />
+					<h3>Recently Uploaded</h3>
+					<PoemList history={this.props.history} />
 				</div>
 			</div>
 		);

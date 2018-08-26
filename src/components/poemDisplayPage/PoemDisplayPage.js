@@ -85,7 +85,7 @@ export class PoemDisplayPage extends React.Component{
 
 		if(this.state.edit){
 			return (
-				<div>
+				<div className="poemEdit">
 					<PoemEdit toggleEdit={this.toggleEdit} title={this.props.poem.title} id={this.props.poem.id} content={this.props.poem.content} />
 				</div>
 			);

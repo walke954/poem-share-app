@@ -1,0 +1,19 @@
+.createReply{
+	padding: 10px;
+}
+
+.createReply textarea{
+	resize: none;
+	height: 100px;
+	width: 80%;
+	display: block;
+}
+
+.createReply label{
+	position:absolute;
+	left:-10000px;
+	top:auto;
+	width:1px;
+	height:1px;
+	overflow:hidden;
+}

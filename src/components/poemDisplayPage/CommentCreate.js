@@ -1,30 +1,57 @@
 import React from 'react';
-import {Field, reduxForm} from 'redux-form';
-import TextArea from '../inputs/TextArea';
+import {connect} from 'react-redux';
 import {createComment} from '../../redux/actions/poem';
 
+import './commentCreate.css';
+
 export class CommentCreate extends React.Component{
-	onSubmit(values){
-		const {content} = values;
-		return this.props
-			.dispatch(createComment(this.props.poem_id, content))
-			.then(() => this.props.update());
+	constructor(props){
+		super(props);
+		this.state = {
+			value: ''
+		}
+
+		this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleChange = this.handleChange.bind(this);
 	}
+	// onSubmit(values){
+	// 	const {content} = values;
+	// 	return this.props
+	// 		.dispatch(createComment(this.props.poem_id, content))
+	// 		.then(() => this.props.update());
+	// }
+
+	handleChange(event) {
+	    this.setState({value: event.target.value});
+	}
+
+	handleSubmit(event) {
+    event.preventDefault();
+
+    new Promise((resolve, reject) => {
+     	resolve(this.props.dispatch(createComment(this.props.poem_id, this.state.value)));
+    })
+      	.then(() => {
+	        this.props.update();
+	    })
+	    .catch(err => {
+	        console.error(err);
+	    });
+  }
 
 	render(){
 		return (
-			<form autoComplete="off" onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}>
-				<label htmlFor="content">Comment</label>
-				<Field 
-					name="content" 
-					id="content" 
-					type="text" 
-					component={TextArea} 
-				/>
-				<button type="submit" disabled={this.props.pristine || this.props.submitting}>Create</button>
+			<form autoComplete="off" onSubmit={this.handleSubmit} className="commentCreate">
+				<label>Comment</label>
+				<textarea className="comment-box" type="text" value={this.state.value} onChange={this.handleChange} />
+				<button className="common-button" type="submit">Comment</button>
 			</form>
 		);
 	}
 }
 
-export default reduxForm({form: 'commentCreate'})(CommentCreate);
+const mapStateToProps = state => ({
+
+});
+
+export default connect(mapStateToProps)(CommentCreate);

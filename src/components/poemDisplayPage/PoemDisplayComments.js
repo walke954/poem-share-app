@@ -11,7 +11,7 @@ export class PoemDisplayComments extends React.Component{
 		this.state = {
 			comments_display: false,
 			willComment: false,
-			commentId: '',
+			commentId: ''
 		}
 		this.update = this.update.bind(this);
 	}
@@ -33,8 +33,8 @@ export class PoemDisplayComments extends React.Component{
 						return (
 							<div className="reply" key={reply.id}>
 								<p>{reply.content}</p>
-								<p>{reply.displayName} <span className="gray-text">@{reply.username}</span></p>
-								<p>{reply.date}</p>
+								<p className="author">{reply.displayName} <span className="gray-text">@{reply.username}</span></p>
+								<p className="author">{reply.date}</p>
 							</div>
 						);
 					});
@@ -52,15 +52,15 @@ export class PoemDisplayComments extends React.Component{
 				}
 				else if(this.props.auth.currentUser !== null){
 					replies.push(
-						<p className="clickable" onClick={() => this.setState({commentId: comment.id})}
+						<p className="clickable createReply" onClick={() => this.setState({commentId: comment.id})}
 						key={comment.id}>Reply</p>)
 				}
 
 				return (
 					<div className="comment" key={index}>
 						<p>{comment.content}</p>
-						<p>{comment.displayName} <span className="gray-text">@{comment.username}</span></p>
-						<p>{comment.date}</p>
+						<p className="author">{comment.displayName} <span className="gray-text">@{comment.username}</span></p>
+						<p className="author">{comment.date}</p>
 						{replies}
 					</div>
 				);
@@ -75,7 +75,7 @@ export class PoemDisplayComments extends React.Component{
 			}
 			else if(this.props.auth.currentUser !== null){
 				comments.push(
-					<p className="clickable" onClick={() => this.setState({willComment: true})}
+					<p className="clickable createComment" onClick={() => this.setState({willComment: true})}
 						key={this.props.poem.id}>Comment</p>
 				);
 			}

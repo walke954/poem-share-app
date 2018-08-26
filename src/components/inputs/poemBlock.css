@@ -1,41 +1,39 @@
 .poemBlock{
-	transition: 0.5s;
-	-webkit-transition: 0.5s;
 	border-left: 2px solid lightblue;
 	padding: 10px;
 	margin-bottom: 10px;
 }
 
 .poemBlock:hover{
-	margin-left: 10px;
+	cursor: default;
+}
+
+.poemBlock h4{
+	font-size: 22px;
+}
+
+.poemTitle:hover{
 	cursor: pointer;
+	color: purple;
 }
 
-h4{
+.poemBlock p{
 	font-size: 18px;
-}
-
-p{
-	font-size: 18px;
-	display: block;
+	display: inline-block;
 	margin-left: 10px;
+}
+
+.icon-wrapper p{
+	display: inline-block;
 }
 
 @media only screen and (min-width: 520px){
-	h4{
-		
-	}
-
 	p{
 		display: inline-block;
 	}
 }
 
 @media only screen and (min-width: 600px){
-	h4{
-		display: block;
-	}
-
 	p{
 		display: block;
 	}

@@ -106,7 +106,7 @@ export const likePoem = (id, toggle) => dispatch => {
     })
 	    .then(res => normalizeResponseErrors(res))
 	    .then(res => {
-	    	let value = toggle === 'like' ? 1 : -1;
+	    	let value = toggle === 'Like' ? 1 : -1;
 	    	dispatch(toggleLike(value));
 	    }) 
 	    .catch(err => {

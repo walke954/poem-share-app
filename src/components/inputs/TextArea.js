@@ -16,7 +16,7 @@ export default class TextArea extends React.Component {
 		}
 
 		let warning;
-		if(this.props.touched && this.props.meta.warning){
+		if(this.props.meta.touched && this.props.meta.warning){
 			warning = <div className="form-warning">{this.props.meta.warning}</div>;
 		}
 

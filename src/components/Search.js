@@ -53,7 +53,7 @@ export class Search extends React.Component {
 		    	this.setState({poem_items: copy.concat(list.poems)});
 		    	this.setState({page: this.state.page + 1});
 
-		    	if(list.poems.length !== 10){
+		    	if(list.poems.length !== 5){
 		    		this.setState({end: true});
 		    	}
 		    })
@@ -68,8 +68,8 @@ export class Search extends React.Component {
 
 	render(){
 		const poem_blocks = this.state.poem_items.map((item, index) => 
-			<div className="poemBlockWrapper" key={index} onClick={() => this.selectPoem(item.id)}>
-				<PoemBlock item={item} />
+			<div className="poemBlockWrapper" key={index}>
+				<PoemBlock selectPoem={this.selectPoem} item={item} />
 			</div>
 		);
 
@@ -80,7 +80,7 @@ export class Search extends React.Component {
 
 		let button = null;
 		if(this.state.end === false && this.state.poem_items.length !== 0){
-			button = <button onClick={() => this.getPoemList(this.state.keyword)}>More</button>;
+			button = <button className="common-button" onClick={() => this.getPoemList(this.state.keyword)}>More</button>;
 		}
 
 		return (

@@ -34,6 +34,13 @@ export class PoemList extends React.Component {
 			}
 			this.getPoemList(query);
 		}
+		else{
+			const query = {
+				search: '',
+				page: this.state.page
+			}
+			this.getPoemList(query);
+		}
 	}
 
 	// calls to the API to get a list of poems for the component.
@@ -45,7 +52,11 @@ export class PoemList extends React.Component {
 		if(query.likes){
 			queryString = queryString.concat(`likes=${query.likes}&`);
 		}
+		if(query.search === ''){
+			queryString = queryString.concat(`search=${query.search}&`);
+		}
 		queryString = queryString.concat(`page=${query.page}`);
+
 
 		return fetch(`${API_BASE_URL}/poem/list/?${queryString}`, {
 	        method: 'GET',
@@ -64,13 +75,22 @@ export class PoemList extends React.Component {
 		    	this.setState({poem_items: this.state.poem_items.concat(list.poems)})
 
 		    	// records the last query and adds a page as well. Next time 'getPoemList()' is called, this will be used, adding another page to the list.
-		    	const query = {
-					username: this.props.username,
-					page: this.state.page + 1
+		    	let new_query;
+		    	if(query.username){
+		    		new_query = {
+						username: this.props.username,
+						page: this.state.page + 1
+					}
 				}
-				this.setState({query: query});
+				else{
+		    		new_query = {
+						search: '',
+						page: this.state.page + 1
+					}
+				}
+				this.setState({query: new_query});
 
-		    	if(list.poems.length !== 10){
+		    	if(list.poems.length !== 5){
 		    		this.setState({end: true});
 		    	}
 		    })
@@ -85,8 +105,8 @@ export class PoemList extends React.Component {
 
 	render(){
 		const poem_blocks = this.state.poem_items.map((item, index) => 
-			<div className="poemBlockWrapper" key={index} onClick={() => this.selectPoem(item.id)}>
-				<PoemBlock item={item} />
+			<div className="poemBlockWrapper" key={index}>
+				<PoemBlock item={item} selectPoem={this.selectPoem} />
 			</div>
 		);
 
@@ -98,7 +118,7 @@ export class PoemList extends React.Component {
 
 		let button = null;
 		if(this.state.end === false && this.state.poem_items.length !== 0){
-			button = <button onClick={() => this.getPoemList(this.state.query)}>More</button>;
+			button = <button className="common-button" onClick={() => this.getPoemList(this.state.query)}>More</button>;
 		}
 
 		return (

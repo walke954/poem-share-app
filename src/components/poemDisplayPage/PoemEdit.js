@@ -6,6 +6,8 @@ import TextArea from '../inputs/TextArea';
 import {required, nonEmpty, isTrimmed} from '../../validators';
 import {connect} from 'react-redux';
 
+import './poemEdit.css';
+
 export class PoemEdit extends React.Component{
 	onSubmit(values){
 		const {title, content} = values;
@@ -38,8 +40,8 @@ export class PoemEdit extends React.Component{
 					component={TextArea} 
 					validate={[required, nonEmpty]}
 				/>
-				<button type="submit" disabled={this.props.submitting}>Update</button>
-				<button type="button" onClick={() => this.props.toggleEdit()}>Cancel</button>
+				<button className="common-button" type="submit" disabled={this.props.submitting}>Update</button>
+				<button className="warning-button" type="button" onClick={() => this.props.toggleEdit()}>Cancel</button>
 			</form>
 		);
 	}

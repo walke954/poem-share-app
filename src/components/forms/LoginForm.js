@@ -37,7 +37,7 @@ export class LoginForm extends React.Component{
 					value=""
 				/>
 				<button 
-					className="submit-button"
+					className="common-button"
 					type="submit" 
 					disabled={this.props.pristine || this.props.submitting}
 				>Login</button>

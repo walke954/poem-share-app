@@ -14,22 +14,11 @@
 
 .create-poem-button{
 	padding: 10px;
-	border: 1px solid dodgerblue;
-	background-color: lightblue;
-	color: darkblue;
-	font-weight: bold;
-	border-radius: 2px;
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
 	width: 50%;
 	max-width: 200px;
-}
-
-.create-poem-button:hover{
-	background-color: dodgerblue;
-	color: white;
-	cursor: pointer;
 }
 
 .createPoemBlock{

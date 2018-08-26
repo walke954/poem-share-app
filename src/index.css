@@ -4,30 +4,9 @@
 
 body {
   margin: 0;
+  margin-bottom: 50px;
   padding: 0;
   font-family: 'Lato', sans-serif;
-}
-
-.submit-button{
-	font-size: 14px;
-	padding: 5px;
-	width: 100px;
-	margin-top: 20px;
-	border: 1px solid;
-	border-radius: 5px;
-	font-weight: bold;
-}
-
-.submit-button:enabled{
-	cursor: pointer;
-	background-color: lightblue;
-	border-color: dodgerblue;
-	color: darkblue;
-}
-
-.submit-button:enabled.submit-button:hover{
-	background-color: dodgerblue;
-	color: white;
 }
 
 label{
@@ -53,12 +32,76 @@ label{
 
 p{
 	margin: 0px;
+	font-size: 18px;
 }
 
 h4{
 	margin: 0px;
 }
 
-.gray-text{
+.authLink{
 	color: gray;
+}
+
+.authLink:hover{
+	color: darkgray;
+}
+
+.common-button{
+	font-size: 14px;
+	padding: 5px;
+	width: 100px;
+	margin-top: 20px;
+	border: 1px solid;
+	border-radius: 2px;
+	font-weight: bold;
+}
+
+.common-button:enabled{
+	cursor: pointer;
+	background-color: lightblue;
+	border-color: dodgerblue;
+	color: darkblue;
+}
+
+.common-button:enabled.common-button:hover{
+	background-color: dodgerblue;
+	color: white;
+}
+
+.warning-button{
+	font-size: 14px;
+	padding: 5px;
+	min-width: 100px;
+	margin-top: 20px;
+	border: 1px solid;
+	border-radius: 2px;
+	font-weight: bold;
+}
+
+.warning-button:enabled{
+	cursor: pointer;
+	background-color: tomato;
+	border-color: red;
+	color: white;
+}
+
+.warning-button:enabled.warning-button:hover{
+	background-color: red;
+	color: white;
+}
+
+.author{
+	color: dodgerblue;
+}
+
+input{
+	max-width: 300px;
+	font-size: 18px;
+	font-family: 'Lato', sans-serif;
+}
+
+textarea{
+	font-size: 18px;
+	font-family: 'Lato', sans-serif;
 }

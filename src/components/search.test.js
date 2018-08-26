@@ -29,4 +29,30 @@ describe('<Search />', () => {
 		wrapper.find('.poemBlockWrapper').simulate('click');
 		expect(value).toEqual(true);
 	});
+
+	it('should reset the state when resetPage() is called', () => {
+		const wrapper = shallow(<Search />);
+
+		const defaultState = {
+			page: 0,
+			poem_items: [],
+			keyword: '',
+			end: false
+		}
+
+		const testState = {
+			page: 1,
+			poem_items: ['item1'],
+			keyword: 'hello',
+			end: true
+		}
+
+		//set the new test state
+		wrapper.setState(testState);
+		expect(wrapper.state()).toEqual(testState);
+
+		// reset the test state
+		wrapper.instance().resetPage();
+		expect(wrapper.state()).toEqual(defaultState);
+	});
 });

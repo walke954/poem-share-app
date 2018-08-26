@@ -22,7 +22,10 @@ export function App(props){
 		heading = <Heading />;
 	}
 	else{
-		heading = <img className="logo" src={logo} alt="Cloud Poetry website logo" />;
+		heading = 
+			(<header className="heading">
+				<img className="logo" src={logo} alt="Cloud Poetry website logo" />
+			</header>);
 	}
 
 	return (
@@ -34,7 +37,7 @@ export function App(props){
 					<Route exact path="/signup/" component={SignupPage} />
 					<Route exact path="/about/" component={About} />
 					<Route exact path="/home/" component={Home} />
-					<Route exact path="/profile/" component={Profile} />
+					<Route exact path="/profile/:username" component={Profile} />
 					<Route exact path="/poem/:poemId" component={PoemDisplayPage} />
 					<Route exact path="/search/" component={Search} />
 				</main>
