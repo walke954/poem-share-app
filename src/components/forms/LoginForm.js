@@ -11,7 +11,7 @@ export class LoginForm extends React.Component{
 			.dispatch(login(username, password))
 			.then(() => {
 				this.props.history.push('/home/');
-			});
+			})
 	}
 
 	render(){
