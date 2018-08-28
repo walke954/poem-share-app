@@ -47,11 +47,14 @@ export class PoemDisplayPage extends React.Component{
 
 	toggleLike(toggle){
 		new Promise((resolve, reject) => {
+			document.getElementById("like-button").disabled = true;
 			const like = this.props.dispatch(likePoem(this.props.match.params.poemId, toggle));
 			resolve(like);
 		})
 			.then(() => this.props.dispatch(getLikes()))
+			.then(() => document.getElementById("like-button").disabled = false)
 			.catch(err => {
+				document.getElementById("like-button").disabled = false;
 				console.error(err);
 			});
 	}

@@ -20,7 +20,9 @@ export function PoemDisplay(props){
 	else{
 		toolBar = (
 			<div className="toolbar">
-				<button className="common-button" onClick={() => props.toggleLike(like)}>{like}</button>
+				<button className="common-button" 
+				id="like-button" 
+				onClick={() => props.toggleLike(like)}>{like}</button>
 			</div>
 		);
 	}

@@ -15,6 +15,11 @@ export class LoginForm extends React.Component{
 	}
 
 	render(){
+		let warning;
+		if(this.props.error){
+			warning = <p className="form-warning">*{this.props.error}</p>;
+		}
+		
 		return (
 			<form className="loginForm" autoComplete="off" onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}>
 				<h2 className="form-title">Login</h2>
@@ -36,6 +41,7 @@ export class LoginForm extends React.Component{
 					validate={[required, nonEmpty]}
 					value=""
 				/>
+				{warning}
 				<button 
 					className="common-button"
 					type="submit" 
