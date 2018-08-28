@@ -21,7 +21,8 @@ export function LoginPage(props){
 }
 
 const mapStateToProps = state => ({
-	loggedIn: state.auth.currentUser !== null
+	loggedIn: state.auth.currentUser !== null,
+	error: state.auth.error
 });
 
 export default connect(mapStateToProps)(LoginPage);
