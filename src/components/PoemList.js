@@ -2,6 +2,7 @@ import React from 'react';
 import PoemBlock from './inputs/PoemBlock.js';
 import {connect} from 'react-redux';
 import {API_BASE_URL} from '../config';
+import {getList} from '../redux/actions/poem.js';
 
 import './poemList.css';
 
@@ -58,19 +59,9 @@ export class PoemList extends React.Component {
 		queryString = queryString.concat(`page=${query.page}`);
 
 
-		return fetch(`${API_BASE_URL}/poem/list/?${queryString}`, {
-	        method: 'GET',
-	        mode: 'cors',
-	        headers: {
-	           'Content-Type': 'application/json'
-	        }
-	    })
-		    .then( res => {
-		    	if (!res.ok) {
-                    return Promise.reject(res.statusText);
-                }
-                return res.json();
-            })
+		new Promise((resolve, reject) => {
+			resolve(this.props.dispatch(getList(queryString)));
+		})
 		    .then(list => {
 		    	this.setState({poem_items: this.state.poem_items.concat(list.poems)})
 

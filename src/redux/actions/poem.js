@@ -137,6 +137,25 @@ export const deletePoem = id => dispatch => {
 	    });
 }
 
+export const getList = queryString => dispatch => {
+	return fetch(`${API_BASE_URL}/poem/list/?${queryString}`, {
+        method: 'GET',
+        mode: 'cors',
+        headers: {
+           'Content-Type': 'application/json'
+        }
+    })
+	    .then( res => {
+	    	if (!res.ok) {
+                return Promise.reject(res.statusText);
+            }
+            return res.json();
+        })
+	    .catch(err => {
+	        console.error(err);
+	    });
+}
+
 export const createComment = (poem_id, content) => dispatch => {
 	const authToken = loadAuthToken();
 	return fetch(`${API_BASE_URL}/poem/comment`, {

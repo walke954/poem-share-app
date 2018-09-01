@@ -7,4 +7,9 @@ describe('<App />', () => {
 	it('renders without crashing', () => {
 		shallow(<App />);
 	});
+
+	it('should display the the correct heading', () => {
+		const wrapper = shallow(<App />);
+		expect(wrapper.hasClass('heading')).toEqual(false);
+	});
 });

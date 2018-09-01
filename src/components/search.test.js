@@ -17,19 +17,6 @@ describe('<Search />', () => {
 		expect(childWrapper.hasClass('poemBlockWrapper')).toEqual(true);
 	});
 
-	it('should select a poem if the list item is clicked upon', () => {
-		let value = false;
-		const wrapper = shallow(<Search />);
-		
-		jest.spyOn(wrapper.instance(), 'selectPoem').mockImplementation(() => {
-			value = true;
-		});
-
-		wrapper.setState({poem_items: ['item1']});
-		wrapper.find('.poemBlockWrapper').simulate('click');
-		expect(value).toEqual(true);
-	});
-
 	it('should reset the state when resetPage() is called', () => {
 		const wrapper = shallow(<Search />);
 
