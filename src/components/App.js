@@ -11,7 +11,6 @@ import PoemDisplayPage from './poemDisplayPage/PoemDisplayPage.js';
 import Profile from './Profile.js';
 import Search from './Search.js';
 import {loadAuthToken, clearAuthToken} from '../redux/local-storage';
-import {Redirect} from 'react-router-dom';
 import {API_BASE_URL} from '../config';
 import {clearAuth} from '../redux/actions/auth.js';
 

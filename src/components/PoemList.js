@@ -1,7 +1,6 @@
 import React from 'react';
 import PoemBlock from './inputs/PoemBlock.js';
 import {connect} from 'react-redux';
-import {API_BASE_URL} from '../config';
 import {getList} from '../redux/actions/poem.js';
 
 import './poemList.css';

@@ -4,6 +4,8 @@ import {login} from '../../redux/actions/auth';
 import Input from '../inputs/Input';
 import {required, nonEmpty} from '../../validators';
 
+import './loginForm.css';
+
 export class LoginForm extends React.Component{
 	onSubmit(values){
 		const {username, password} = values;
@@ -42,6 +44,13 @@ export class LoginForm extends React.Component{
 					value=""
 				/>
 				{warning}
+				<p className="example">Click <span id="example-link" onClick={() => {
+					const values = {
+						username: 'example',
+						password: 'sdfsdfsdfj'
+					}
+					this.onSubmit(values);
+				}}>here</span> for a quick example</p>
 				<button 
 					className="common-button"
 					type="submit" 

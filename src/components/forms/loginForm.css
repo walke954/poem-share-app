@@ -1,0 +1,15 @@
+.example {
+	border: 2px dashed dodgerblue;
+	margin-top: 10px;
+	padding: 10px;
+}
+
+#example-link {
+	color: dodgerblue;
+	text-decoration: underline;
+}
+
+#example-link:hover {
+	color: purple;
+	cursor: pointer;
+}

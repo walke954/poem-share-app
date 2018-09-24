@@ -1,9 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {API_BASE_URL} from '../config';
-import {loadAuthToken, clearAuthToken} from '../redux/local-storage';
 import RequireLogin from './RequireLogin.js';
-import {clearAuth} from '../redux/actions/auth.js';
 import {Redirect} from 'react-router-dom';
 import PoemList from './PoemList.js';
 
