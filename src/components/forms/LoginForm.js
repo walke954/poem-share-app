@@ -27,7 +27,7 @@ export class LoginForm extends React.Component{
 
 	render(){
 		let loading;
-		if(loading){
+		if(this.state.loading){
 			loading = <p className="example">Loading example...</p>
 		}
 
