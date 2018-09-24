@@ -10,8 +10,10 @@ export class LoginForm extends React.Component{
 	constructor(props){
 		super(props);
 		this.state = {
-			loading: false;
+			loading: false
 		}
+
+		this.onSubmit = this.onSubmit.bind(this);
 	}
 
 	onSubmit(values){
