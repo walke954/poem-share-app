@@ -7,6 +7,13 @@ import {required, nonEmpty} from '../../validators';
 import './loginForm.css';
 
 export class LoginForm extends React.Component{
+	constructor(props){
+		super(props);
+		this.state = {
+			loading: false;
+		}
+	}
+
 	onSubmit(values){
 		const {username, password} = values;
 		return this.props
@@ -17,6 +24,11 @@ export class LoginForm extends React.Component{
 	}
 
 	render(){
+		let loading;
+		if(loading){
+			loading = <p className="example">Loading example...</p>
+		}
+
 		let warning;
 		if(this.props.error){
 			warning = <p className="form-warning">*{this.props.error}</p>;
@@ -45,12 +57,14 @@ export class LoginForm extends React.Component{
 				/>
 				{warning}
 				<p className="example">Click <span id="example-link" onClick={() => {
+					this.setState({loading: true});
 					const values = {
 						username: 'example',
 						password: 'sdfsdfsdfj'
 					}
 					this.onSubmit(values);
 				}}>here</span> for a quick example</p>
+				{loading}
 				<button 
 					className="common-button"
 					type="submit" 
