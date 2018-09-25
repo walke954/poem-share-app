@@ -1,6 +1,6 @@
 ## Resources
 
-Heroku: https://poem-app-2322.herokuapp.com/
+App: http://cloudpoetry.site/
 
 API: https://github.com/walke954/poem-app-api
 
