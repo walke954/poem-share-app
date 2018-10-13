@@ -7,6 +7,8 @@ export default class SearchForm extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+
+    this.props.getPoemList(this.state.value);
   }
 
    handleChange(event) {

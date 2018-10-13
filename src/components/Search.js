@@ -5,6 +5,8 @@ import {API_BASE_URL} from '../config';
 import RequireLogin from './RequireLogin.js';
 import SearchForm from './forms/SearchForm.js';
 
+import Loading from './Loading.js';
+
 import './search.css';
 
 export class Search extends React.Component {
@@ -14,11 +16,16 @@ export class Search extends React.Component {
 			page: 0,
 			poem_items: [],
 			keyword: '',
-			end: false
+			end: false,
+			loading: true
 		}
 		this.getPoemList = this.getPoemList.bind(this);
 		this.selectPoem = this.selectPoem.bind(this);
 		this.resetPage = this.resetPage.bind(this);
+	}
+
+	componentDidMount(){
+		this.getPoemList('');
 	}
 
 	resetPage(){
@@ -33,7 +40,7 @@ export class Search extends React.Component {
 	getPoemList(keyword){
 		this.setState({keyword: keyword});
 
-	    const queryString = `search=${keyword}&page=${this.state.page}`
+	    const queryString = `search=${keyword}&page=${this.state.page}`;
 
 	    return fetch(`${API_BASE_URL}/poem/list/?${queryString}`, {
 	        method: 'GET',
@@ -56,6 +63,8 @@ export class Search extends React.Component {
 		    	if(list.poems.length !== 5){
 		    		this.setState({end: true});
 		    	}
+
+		    	this.setState({loading: false});
 		    })
 		    .catch(err => {
 		        console.error(err);
@@ -67,6 +76,10 @@ export class Search extends React.Component {
 	}
 
 	render(){
+		if(this.state.loading){
+			return <Loading />;
+		}
+
 		const poem_blocks = this.state.poem_items.map((item, index) => 
 			<div className="poemBlockWrapper" key={index}>
 				<PoemBlock selectPoem={this.selectPoem} item={item} />

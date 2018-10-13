@@ -2,6 +2,7 @@ import React from 'react';
 import PoemBlock from './inputs/PoemBlock.js';
 import {connect} from 'react-redux';
 import {getList} from '../redux/actions/poem.js';
+import Loading from './Loading';
 
 import './poemList.css';
 
@@ -12,7 +13,8 @@ export class PoemList extends React.Component {
 			page: 0,
 			poem_items: [],
 			end: false,
-			query: null
+			query: null,
+			loading: true
 		}
 		this.getPoemList = this.getPoemList.bind(this);
 		this.selectPoem = this.selectPoem.bind(this);
@@ -57,7 +59,6 @@ export class PoemList extends React.Component {
 		}
 		queryString = queryString.concat(`page=${query.page}`);
 
-
 		new Promise((resolve, reject) => {
 			resolve(this.props.dispatch(getList(queryString)));
 		})
@@ -84,6 +85,9 @@ export class PoemList extends React.Component {
 		    		this.setState({end: true});
 		    	}
 		    })
+		    .then(() => {
+		    	return this.setState({loading: false});
+		    })
 		    .catch(err => {
 		        console.error(err);
 		    });
@@ -94,6 +98,10 @@ export class PoemList extends React.Component {
 	}
 
 	render(){
+		if(this.state.loading){
+			return (<div className="poemList"><Loading /></div>);
+		}
+
 		const poem_blocks = this.state.poem_items.map((item, index) => 
 			<div className="poemBlockWrapper" key={index}>
 				<PoemBlock item={item} selectPoem={this.selectPoem} />

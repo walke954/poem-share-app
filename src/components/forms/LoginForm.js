@@ -3,6 +3,7 @@ import {Field, reduxForm, focus} from 'redux-form';
 import {login} from '../../redux/actions/auth';
 import Input from '../inputs/Input';
 import {required, nonEmpty} from '../../validators';
+import Loading from '../Loading';
 
 import './loginForm.css';
 
@@ -22,13 +23,13 @@ export class LoginForm extends React.Component{
 			.dispatch(login(username, password))
 			.then(() => {
 				this.props.history.push('/home/');
-			})
+			});
 	}
 
 	render(){
 		let loading;
 		if(this.state.loading){
-			loading = <p className="example">Loading example...</p>
+			return <Loading />
 		}
 
 		let warning;
@@ -59,7 +60,6 @@ export class LoginForm extends React.Component{
 				/>
 				{warning}
 				<p className="example">Click <span id="example-link" onClick={() => {
-					this.setState({loading: true});
 					const values = {
 						username: 'example',
 						password: 'sdfsdfsdfj'

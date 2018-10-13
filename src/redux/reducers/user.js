@@ -5,7 +5,7 @@ const initialState = {
 };
 
 export default function reducer(state = initialState, action) {
-    if (action.type === actions.SET_LIKES) {
+    if(action.type === actions.SET_LIKES) {
         return {
             likes: action.likes
         }

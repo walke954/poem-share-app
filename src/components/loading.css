@@ -1,0 +1,136 @@
+.loadingElement {
+	vertical-align: middle;
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+
+.loadingElement .loading-container {
+	width: 80px;
+	height: 80px;
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.loadingElement .left-circle {
+	width: 25%;
+	height: 25%;
+	background-color: dodgerblue;
+	border-radius: 100%;
+	position: absolute;
+	animation-name: left-circle;
+	animation-duration: 1.25s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+.loadingElement .right-circle {
+	width: 30%;
+	height: 30%;
+	background-color: silver;
+	border-radius: 100%;
+	position: absolute;
+	animation-name: right-circle;
+	animation-duration: 1s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+.loadingElement .center-circle {
+	width: 30%;
+	height: 30%;
+	background-color: springgreen;
+	border-radius: 100%;
+	position: absolute;
+	animation-name: center-circle;
+	animation-duration: 0.75s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+@keyframes right-circle {
+	0% {
+		top: 50%;
+		left: 62.5%;
+		z-index: 1;
+	}
+	25% {
+		left: 50%;
+	}
+	49.999% {
+		top: 12.5%;
+		left: 0%;
+		z-index: 1;
+	}
+	50% {
+		top: 12.5%;
+		left: 0%;
+		z-index: -1;
+	}
+	75% {
+		left: 50%;
+	}
+	100% {
+		top: 50%;
+		left: 62.5%;
+		z-index: -1;
+	}
+}
+
+@keyframes left-circle {
+	0% {
+		top: 0%;
+		left: 75%;
+		z-index: -2;
+	}
+	25% {
+		left: 25%;
+	}
+	49.999% {
+		top: 75%;
+		left: 0%;
+		z-index: -2;
+	}
+	50% {
+		top: 75%;
+		left: 0%;
+		z-index: 2;
+	}
+	75% {
+		left: 25%;
+	}
+	100% {
+		top: 0%;
+		left: 75%;
+		z-index: 2;
+	}
+}
+
+@keyframes center-circle {
+	0% {
+		top: 75%;
+		left: 35%;
+		z-index: -1;
+	}
+	25% {
+		left: 20%;
+	}
+	49.999% {
+		top: -5%;
+		left: 35%;
+		z-index: -1;
+	}
+	50% {
+		top: -5%;
+		left: 35%;
+		z-index: 1;
+	}
+	75% {
+		left: 50%;
+	}
+	100% {
+		top: 75%;
+		left: 35%;
+		z-index: 1;
+	}
+}
